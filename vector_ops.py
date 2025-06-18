@@ -1,6 +1,8 @@
 from db_utils import get_conn
+from embedder import get_embedding
 
-def insert_doc(content, embedding):
+def insert_doc(content: str):
+    embedding = get_embedding(content)
     conn = get_conn()
     cur = conn.cursor()
     cur.execute(
@@ -11,7 +13,8 @@ def insert_doc(content, embedding):
     cur.close()
     conn.close()
 
-def search_similar(query_embedding, top_k=3):
+def search_similar(content: str, top_k: int = 3):
+    embedding = get_embedding(content)
     conn = get_conn()
     cur = conn.cursor()
     cur.execute("""
@@ -19,7 +22,7 @@ def search_similar(query_embedding, top_k=3):
         FROM documents
         ORDER BY distance ASC
         LIMIT %s;
-    """, (query_embedding, top_k))
+    """, (embedding, top_k))
     results = cur.fetchall()
     cur.close()
     conn.close()

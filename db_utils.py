@@ -11,7 +11,7 @@ def init_vector_table():
         CREATE TABLE IF NOT EXISTS documents (
             id SERIAL PRIMARY KEY,
             content TEXT,
-            embedding VECTOR(1536)
+            embedding VECTOR(384)
         );
     """)
     conn.commit()
