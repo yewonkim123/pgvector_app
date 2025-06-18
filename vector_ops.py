@@ -15,7 +15,7 @@ def search_similar(query_embedding, top_k=3):
     conn = get_conn()
     cur = conn.cursor()
     cur.execute("""
-        SELECT id, content, embedding <-> %s AS distance
+        SELECT id, content, embedding <-> %s::vector AS distance
         FROM documents
         ORDER BY distance ASC
         LIMIT %s;
