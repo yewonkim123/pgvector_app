@@ -1,5 +1,5 @@
 DB_CONFIG = {
-    "host": "host.docker.internal",  # Docker 컨테이너에서 로컬 PostgreSQL 접근 시
+    "host": "localhost",  # ← 변경
     "port": 5432,
     "dbname": "gai_db",
     "user": "gai_admin",
